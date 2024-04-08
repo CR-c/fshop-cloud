@@ -7,6 +7,8 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>fshop</name>
     <packaging>pom</packaging>
+<!--    子模块-->
+
     <modules>
         <module>fshop-eureka</module>
     </modules>
@@ -32,6 +34,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
