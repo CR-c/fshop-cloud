@@ -7,15 +7,41 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>fshop</name>
     <packaging>pom</packaging>
+<!--    子模块-->
 
+    <modules>
+
+        <module>item-service</module>
+        <module>fshop-common</module>
+        <module>fshop-app</module>
+        <module>fshop-cart</module>
+        <module>fshop-order</module>
+    </modules>
     <description>fshop</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-boot.version>2.7.6</spring-boot.version>
-        <spring-cloud.version>2021.0.8</spring-cloud.version>
+        <spring-cloud.version>2021.0.3</spring-cloud.version>
+        <spring-cloud-alibaba.version>2021.0.4.0</spring-cloud-alibaba.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mysql-cj.version>8.0.23</mysql-cj.version>
+        <hutool.version>5.8.11</hutool.version>
+        <org.projectlombok.version>1.18.20</org.projectlombok.version>
+        <mybatis.version>3.5.3.1</mybatis.version>
+        <lombok.version>1.18.20</lombok.version>
+        <pageHelp.version>1.4.7</pageHelp.version>
+        <httpclient.version>4.5.1</httpclient.version>
+        <commons-io.version>2.6</commons-io.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <fastjson.version>1.2.76</fastjson.version>
+        <hutool-core.version>5.6.5</hutool-core.version>
+        <jsch.version>0.1.55</jsch.version>
+        <commons-net.version>3.3</commons-net.version>
     </properties>
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -27,7 +53,30 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+            <version>${mybatis-plus.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>${hutool-core.version}</version>
+        </dependency>
+
     </dependencies>
+<!--    依赖包管理-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -40,10 +89,35 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>2022.0.5</version>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
+            <!--spring cloud alibaba 依赖-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+<!--            mysql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-cj.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>cn.hutool</groupId>-->
+<!--                <artifactId>hutool-all</artifactId>-->
+<!--                <version>${hutool.version}</version>-->
+<!--            </dependency>-->
         </dependencies>
-
     </dependencyManagement>
 
     <build>

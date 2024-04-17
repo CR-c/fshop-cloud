@@ -1,0 +1,51 @@
+server:
+  port: 5602
+
+spring:
+  application:
+    name: fshop-item
+  profiles:
+    active: dev
+  ftp:
+    ip: 47.115.213.55
+    port: 21
+    username: fshop
+    password: sKnGedm4sZN7R67w
+    path: /www/wwwroot/fshop
+  datasource:
+    url: jdbc:mysql://localhost/catCC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: mysql123
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  mybatis:
+    configuration:
+      jdbc-type-for-null: 'null'
+      map-underscore-to-camel-case: true
+      database-id: mysql
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+  mybatis-plus:
+    configuration:
+      map-underscore-to-camel-case: true
+  knife4j:
+    enable: true
+    openapi:
+      title: fshop商品管理接口文档
+      email: chenqihui352@163.com
+      concat: crc
+      version: 1.0.0
+      group:
+        default:
+          group-name: 默认分组
+          api-rule: package
+          api-rule-resources:
+            -com.fshop.item.controller
+
+#输出mysql日志
+logging:
+  level:
+    org:
+      mybatis: debug

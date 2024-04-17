@@ -1,4 +1,4 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Apr 08 20:45:33 CST 2024
-@default-aliyunmaven-https\://maven.aliyun.com/repository/public/.lastUpdated=1712580333527
-https\://maven.aliyun.com/repository/public/.error=Could not transfer artifact org.springframework.cloud\:spring-cloud-starter-netflix-eureka-server\:pom\:unknown from/to aliyunmaven (https\://maven.aliyun.com/repository/public)\: transfer failed for https\://maven.aliyun.com/repository/public/org/springframework/cloud/spring-cloud-starter-netflix-eureka-server/unknown/spring-cloud-starter-netflix-eureka-server-unknown.pom
+#Mon Apr 08 20:58:56 CST 2024
+https\://maven.aliyun.com/repository/public/.error=
+https\://maven.aliyun.com/repository/public/.lastUpdated=1712581136848

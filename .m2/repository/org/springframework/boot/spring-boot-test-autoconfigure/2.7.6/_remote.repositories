@@ -1,4 +1,6 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Apr 08 19:46:00 CST 2024
+#Mon Apr 08 20:53:25 CST 2024
 spring-boot-test-autoconfigure-2.7.6.jar>aliyunmaven=
+spring-boot-test-autoconfigure-2.7.6-javadoc.jar>aliyunmaven=
 spring-boot-test-autoconfigure-2.7.6.pom>aliyunmaven=
+spring-boot-test-autoconfigure-2.7.6-sources.jar>aliyunmaven=

@@ -1,4 +1,6 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Mon Apr 08 19:46:00 CST 2024
+#Mon Apr 08 20:53:00 CST 2024
 spring-beans-5.3.24.jar>aliyunmaven=
 spring-beans-5.3.24.pom>aliyunmaven=
+spring-beans-5.3.24-sources.jar>aliyunmaven=
+spring-beans-5.3.24-javadoc.jar>aliyunmaven=
