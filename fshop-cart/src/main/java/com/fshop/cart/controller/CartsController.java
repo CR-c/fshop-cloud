@@ -32,7 +32,6 @@ public class CartsController {
     private CartsService cartsService;
 
     private String userId ;
-    private final String user = UserContext.getUser();
 
     /**
      * 查询某个用户的购物车信息
@@ -64,7 +63,7 @@ public class CartsController {
      */
     @PostMapping("app/addCarts")
     public R<String> app_addCarts(@RequestBody Carts carts, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
 
         carts.setCheckFlag(carts.isCheckFlag());
         //判断是否有商品编号相同的商品在购物车中
@@ -82,11 +81,15 @@ public class CartsController {
                    updQueryWrapper.eq(Carts::getSize,cart.getSize());
                    //更新数据库
                    cartsService.update(carts,updQueryWrapper);
+                   //清楚线程数据
+                   UserContext.removeUser();
                    return R.success("添加成功");
                }
             }
         }
         carts.setUserId(userId);
+        //清楚线程数据
+        UserContext.removeUser();
         boolean save = cartsService.save(carts);
         if (save) {
             return R.success("添加成功");
@@ -104,7 +107,7 @@ public class CartsController {
      */
     @DeleteMapping("app/delCarts/{clothId}")
     public R<String> app_delCart(@PathVariable("clothId") String clothId, @RequestBody Carts carts, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Carts> queryWrapper = new LambdaQueryWrapper<>();
         //根据用户id和商品id进行查询
         queryWrapper.eq(Carts::getUserId, userId);
@@ -113,6 +116,8 @@ public class CartsController {
         queryWrapper.eq(Carts::getSize,carts.getSize());
         queryWrapper.eq(Carts::getColor,carts.getColor());
         //通过查询结果进行删除
+        //清楚线程数据
+        UserContext.removeUser();
         boolean remove = cartsService.remove(queryWrapper);
         if (remove) {
             return R.success("删除成功");
@@ -129,7 +134,7 @@ public class CartsController {
      */
     @DeleteMapping("app/delCarts")
     public R<String> app_delCarts(@RequestBody String[] clothIds, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         //遍历数组
         for (String clothId : clothIds) {
             LambdaQueryWrapper<Carts> queryWrapper = new LambdaQueryWrapper<>();
@@ -137,9 +142,13 @@ public class CartsController {
             queryWrapper.eq(Carts::getClothId, clothId);
             boolean remove = cartsService.remove(queryWrapper);
             if (!remove) {
+                //清楚线程数据
+                UserContext.removeUser();
                 return R.error("删除失败");
             }
         }
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success("删除成功");
     }
 
@@ -152,12 +161,14 @@ public class CartsController {
     @PostMapping("app/updCart")
     public R<String> app_updCart(@RequestBody Carts carts, HttpServletRequest request) {
 
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         carts.setUserId(userId);
         LambdaQueryWrapper<Carts> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Carts::getUserId, userId);
         queryWrapper.eq(Carts::getColor,carts.getColor());
         queryWrapper.eq(Carts::getSize,carts.getSize());
+        //清楚线程数据
+        UserContext.removeUser();
         boolean update = cartsService.update(carts,queryWrapper);
         if (update) {
             return R.success("修改成功");
@@ -174,7 +185,7 @@ public class CartsController {
      */
     @PostMapping("app/updCarts")
     public R<String> app_updCarts(@RequestBody Carts[] carts, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
 
         for (Carts cart : carts) {
             LambdaQueryWrapper<Carts> queryWrapper = new LambdaQueryWrapper<>();
@@ -182,9 +193,13 @@ public class CartsController {
             queryWrapper.eq(Carts::getClothId, cart.getClothId());
             boolean update = cartsService.update(cart, queryWrapper);
             if (!update) {
+                //清楚线程数据
+                UserContext.removeUser();
                 return R.error("修改失败");
             }
         }
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success("修改成功");
     }
 

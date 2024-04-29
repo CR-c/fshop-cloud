@@ -5,6 +5,7 @@ import com.fshop.common.R;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.fshop.common.utils.HeadUtils;
+import com.fshop.common.utils.UserContext;
 import com.fshop.order.entity.Order;
 import com.fshop.order.entity.OrderGoods;
 import com.fshop.order.entity.dto.OrderDto;
@@ -52,7 +53,7 @@ public class OrderController {
      */
     @GetMapping("/app/getCreateOrderId")
     public R<Long> getCreateOrderId(HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         //如果已经存在创建且为空的订单,则直接获取该订单号避免浪费
         LambdaQueryWrapper<Order> orderLambdaQueryWrapper = new LambdaQueryWrapper<>();
         orderLambdaQueryWrapper.eq(Order::getUserId, userId);
@@ -67,6 +68,8 @@ public class OrderController {
         order.setUserId(userId);
         //设置订单状态为刚创建
         order.setOrderStatus(Order.Create_status);
+        //清楚线程数据
+        UserContext.removeUser();
         boolean save = orderService.save(order);
         if (save) {
             //查询该订单的订单号
@@ -90,10 +93,12 @@ public class OrderController {
      */
     @PostMapping("/app/updateOrder")
     public R<String> app_updateOrder(@RequestBody Order order, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         queryWrapper.eq(Order::getOrderId,order.getOrderId());
+        //清楚线程数据
+        UserContext.removeUser();
         //修改状态
         boolean update = orderService.update(order, queryWrapper);
         if(update){
@@ -105,22 +110,26 @@ public class OrderController {
     @GetMapping("/app/getOrder/{orderId}")
     public R<Order> app_getOrder(@PathVariable("orderId") String orderId,@RequestParam(name = "status") int status, HttpServletRequest request) {
 
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         queryWrapper.eq(Order::getOrderId,orderId);
         //获取对应用户不同状态的订单
         queryWrapper.eq(Order::getOrderStatus,status);
         Order order = orderService.getOne(queryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success(order);
     }
 
     @DeleteMapping("/app/delOrder/{orderId}")
     public R<String> app_delOrder(@PathVariable("orderId") String orderId, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         queryWrapper.eq(Order::getOrderId,orderId);
+        //清楚线程数据
+        UserContext.removeUser();
         boolean remove = orderService.remove(queryWrapper);
         if(remove){
             return R.success("删除成功");
@@ -131,7 +140,7 @@ public class OrderController {
     @PutMapping("app/cancelOrder/{orderId}")
     public R<String> app_cancelOrder(@PathVariable("orderId") String orderId, @RequestBody Map<String, String> requestBody, HttpServletRequest request) {
         String message = requestBody.get("message");
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         queryWrapper.eq(Order::getOrderId,orderId);
@@ -140,6 +149,8 @@ public class OrderController {
         order.setOrderStatus(Order.Cancel_status);
         //备注设置为取消原因
         order.setOrderMessage(message);
+        //清楚线程数据
+        UserContext.removeUser();
         boolean update = orderService.update(order,queryWrapper);
         if(update){
             return R.success("取消成功");
@@ -150,7 +161,7 @@ public class OrderController {
     @PostMapping("/app/payOrder/{orderId}")
     public R<String> app_payOrder(@PathVariable("orderId") String orderId, HttpServletRequest request) {
 
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         queryWrapper.eq(Order::getOrderId,orderId);
@@ -158,6 +169,8 @@ public class OrderController {
         //支付成功设置为邮递状态
         order.setOrderStatus(Order.Before_Fms_status);
         order.setOrderPayTime(LocalDateTime.now());
+        //清楚线程数据
+        UserContext.removeUser();
         boolean update = orderService.update(order,queryWrapper);
 
         if(update){
@@ -179,7 +192,7 @@ public class OrderController {
 //    @GetMapping("/getOrderPage")
 //    public R<Page> getOrderList(@RequestParam(value = "page") int page, @RequestParam(value = "pageSize") int pageSize, @RequestParam(value = "status") int status, HttpServletRequest request) {
 //
-//        userId = HeadUtils.getHeadUserId(request);
+//        userId = UserContext.getUser();
 //        LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
 //        queryWrapper.eq(Order::getUserId, userId);
 //        if(status!= 0){
@@ -193,7 +206,7 @@ public class OrderController {
     @GetMapping("/getOrderPage")
     public R<Page<OrderDto>> getOrderList(@RequestParam(value = "page") int page, @RequestParam(value = "pageSize") int pageSize, @RequestParam(value = "status") int status, HttpServletRequest request) {
 //        int statusNum = Integer.parseInt(status);
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Order> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Order::getUserId, userId);
         if(status!= 0){
@@ -220,6 +233,8 @@ public class OrderController {
         }
         Page<OrderDto> orderDtoPage = new Page<>(page, pageSize);
         orderDtoPage.setRecords(orderDtoList);
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success(orderDtoPage);
     }
 

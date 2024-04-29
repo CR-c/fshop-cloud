@@ -7,6 +7,7 @@ import com.fshop.cart.entity.Address;
 import com.fshop.cart.service.AddressService;
 import com.fshop.common.R;
 import com.fshop.common.utils.HeadUtils;
+import com.fshop.common.utils.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +42,12 @@ public class AddressController {
     @PostMapping(value = "/web/addAddress",produces = "application/json;charset=UTF-8")
     public R<String> w_addAddress(@RequestBody Address address, HttpServletRequest request){
         //通过请求头进行获取用户id
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         address.setUserId(userId);
         //存入地址全
         address.setAddress(address.getProvince()+address.getCity()+address.getArea()+address.getStress());
+        //清楚线程数据
+        UserContext.removeUser();
         boolean save = addressService.save(address);
         if(save){
             return R.success("添加成功");
@@ -60,7 +63,7 @@ public class AddressController {
      */
     @DeleteMapping("/web/deleteAddress/{addressId}")
     public R<String> w_deleteAddress(@PathVariable("addressId") String addressId,HttpServletRequest request){
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Address> addressLambdaQueryWrapper = new LambdaQueryWrapper<>();
         //根据地址id查询
         addressLambdaQueryWrapper.eq(Address::getAddressId,addressId);
@@ -68,6 +71,8 @@ public class AddressController {
         addressLambdaQueryWrapper.eq(Address::getUserId,userId);
         //删除
         boolean remove = addressService.remove(addressLambdaQueryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         if(remove){
             return R.success("删除成功");
         }
@@ -84,7 +89,7 @@ public class AddressController {
     @PostMapping("/web/updateAddress")
     public R<String> w_updateAddress(@RequestBody Address address,HttpServletRequest request){
         //通过请求头进行获取用户id
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         address.setUserId(userId);
         //存入地址全
         address.setAddress(address.getProvince()+address.getCity()+address.getArea()+address.getStress());
@@ -94,6 +99,8 @@ public class AddressController {
         LambdaQueryWrapper<Address> addressLambdaQueryWrapper = new LambdaQueryWrapper<>();
         addressLambdaQueryWrapper.eq(Address::getAddressId,address.getAddressId());
         addressLambdaQueryWrapper.eq(Address::getUserId,userId);
+        //清楚线程数据
+        UserContext.removeUser();
         //修改
         boolean save = addressService.saveOrUpdate(address,addressLambdaQueryWrapper);
 //        boolean save = addressService.update(address,addressLambdaQueryWrapper);
@@ -112,10 +119,12 @@ public class AddressController {
      */
     @GetMapping("/app/addressInfo")
     public R<List<Address>> addressInfo(HttpServletRequest request){
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<Address> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Address::getUserId, userId);
         List<Address> list = addressService.list(queryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success(list);
     }
 
@@ -124,11 +133,13 @@ public class AddressController {
      */
     @GetMapping("/app/addressPage")
     public R<Page> addressPage(int page, int pageSize, HttpServletRequest request){
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         Page<Address> pageInfo = new Page<>(page, pageSize);
         LambdaQueryWrapper<Address> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Address::getUserId, userId);
         Page<Address> pageAddress = addressService.page(pageInfo, queryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success(pageAddress);
     }
 
@@ -139,7 +150,7 @@ public class AddressController {
      */
     @GetMapping("/app/addressInfo/{id}")
     public R<Address> address(@PathVariable("id") Integer id, HttpServletRequest request){
-        String userId = HeadUtils.getHeadUserId(request);
+        String userId = UserContext.getUser();
 
         LambdaQueryWrapper<Address> addressLambdaQueryWrapper = new LambdaQueryWrapper<>();
         //增加地址id判断
@@ -147,6 +158,8 @@ public class AddressController {
         //增加用户id判断
         addressLambdaQueryWrapper.eq(Address::getUserId,userId);
         Address address = addressService.getOne(addressLambdaQueryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         if(address!=null){
             return R.success(address);
         }

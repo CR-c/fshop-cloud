@@ -7,6 +7,7 @@ import com.fshop.api.client.CartClient;
 import com.fshop.api.entity.Carts;
 import com.fshop.common.R;
 import com.fshop.common.utils.HeadUtils;
+import com.fshop.common.utils.UserContext;
 import com.fshop.order.entity.Order;
 import com.fshop.order.entity.OrderGoods;
 import com.fshop.order.service.OrderGoodsService;
@@ -130,7 +131,7 @@ public class OrderGoodsController {
 
     @GetMapping("/app/getGoods/{orderId}")
     public R<List<OrderGoods>> app_getGoods(@PathVariable Long orderId, HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         //根据订单id和用户id查询订单商品信息
         LambdaQueryWrapper<OrderGoods> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(OrderGoods::getOrderId, orderId);
@@ -139,6 +140,8 @@ public class OrderGoodsController {
         List<OrderGoods> orderGoodsList = orderGoodsService.list(queryWrapper);
 
 
+        //清楚线程数据
+        UserContext.removeUser();
         if (orderGoodsList.size() != 0) {
             return R.success(orderGoodsList);
         }
@@ -148,10 +151,12 @@ public class OrderGoodsController {
     @GetMapping("/app/getOrderGoodsPage")
     public R<List<OrderGoods>> app_getGoodsPage(HttpServletRequest request) {
         //查询用户id对应的所有订单商品信息
-        userId = HeadUtils.getHeadUserId(request);
+        userId = UserContext.getUser();
         LambdaQueryWrapper<OrderGoods> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(OrderGoods::getUserId, userId);
         List<OrderGoods> list = orderGoodsService.list(queryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         if(list.size()>0){
             return R.success(list);
         }
