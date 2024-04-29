@@ -1,0 +1,21 @@
+#server:
+#  port: 5599
+#
+#spring:
+#  application:
+#    name: fshop-common
+#  ftp:
+#    ip: 47.115.213.55
+#    port: 21
+#    username: fshop
+#    password: sKnGedm4sZN7R67w
+#    path: /www/wwwroot/fshop
+fshop:
+  auth:
+    excludePaths: #不需要校验的路径
+      - /cloth/**
+      - /picture/**
+      - /specs/**
+      - /hot/**
+      - /category/**
+      - /user/**

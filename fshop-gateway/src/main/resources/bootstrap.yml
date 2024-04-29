@@ -1,0 +1,46 @@
+server:
+  port: 5599
+
+spring:
+  application:
+    name: fshop-gateway #shop-admin-dev.yml
+  profiles:
+    active: dev
+  main:
+    web-application-type: reactive #引入了common模块,
+  config:
+    import:
+  cloud:
+    nacos:
+      server-addr: 192.168.138.81:8848 # nacos地址
+      discovery:
+        group: DEFAULT_GROUP
+        namespace: 199bab40-cfbe-4aa8-b8d4-5abc21064185
+      config: #配置文件相关信息
+        file-extension: yml
+        refresh-enabled: true
+        namespace: 199bab40-cfbe-4aa8-b8d4-5abc21064185
+        group: DEFAULT_GROUP
+        shared-configs:
+          - data-id: share-nacos.yml
+
+
+
+#gateway:
+#  routes:
+#    - id: item # 路由规则id，自定义，唯一
+#      uri: lb://fshop-item # 路由的目标服务，lb代表负载均衡，会从注册中心拉取服务列表
+#      predicates: # 路由断言，判断当前请求是否符合当前规则，符合则路由到目标服务
+#        - Path=/cloth/**,/specs/**,/picture/**,/category/**,/hot/** # 这里是以请求路径作为判断规则
+#    - id: cart
+#      uri: lb://fshop-cart
+#      predicates:
+#        - Path=/carts/**,/address/**
+#    - id: admin
+#      uri: lb://fshop-admin
+#      predicates:
+#        - Path=/user/**
+#    - id: order
+#      uri: lb://fshop-order
+#      predicates:
+#        - Path=/orderFms/**,/order/**,/orderGoods/**

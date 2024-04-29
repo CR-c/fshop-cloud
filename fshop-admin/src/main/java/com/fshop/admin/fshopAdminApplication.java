@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @SpringBootApplication
 @ServletComponentScan
-@ComponentScan(basePackages = {"com.fshop.admin", "com.fshop.common"})
 @Slf4j
+@ComponentScan(basePackages = {"com.fshop.admin", "com.fshop.common"})
 public class fshopAdminApplication {
     public static void main(String[] args) {
         SpringApplication.run(fshopAdminApplication.class, args);

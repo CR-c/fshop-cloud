@@ -1,0 +1,26 @@
+server:
+  port: 5603
+
+spring:
+  application:
+    name: fshop-order #shop-order-dev.yml
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      server-addr: 192.168.138.81:8848 # nacos地址
+      discovery:
+        group: DEFAULT_GROUP
+        namespace: 199bab40-cfbe-4aa8-b8d4-5abc21064185
+      config: #配置文件相关信息
+        file-extension: yml
+        refresh-enabled: true
+        namespace: 199bab40-cfbe-4aa8-b8d4-5abc21064185
+        group: DEFAULT_GROUP
+        shared-configs:
+          - data-id: share-log.yml
+          - data-id: share-nacos.yml
+
+
+
+

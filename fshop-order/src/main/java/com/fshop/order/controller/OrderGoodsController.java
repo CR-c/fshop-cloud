@@ -3,19 +3,20 @@ package com.fshop.order.controller;
 
 import cn.hutool.core.util.RandomUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.fshop.api.client.CartClient;
+import com.fshop.api.entity.Carts;
 import com.fshop.common.R;
 import com.fshop.common.utils.HeadUtils;
-import com.fshop.order.client.CartClient;
 import com.fshop.order.entity.Order;
 import com.fshop.order.entity.OrderGoods;
 import com.fshop.order.service.OrderGoodsService;
 import com.fshop.order.service.OrderService;
-import com.fshop.cart.entity.Carts;
-//import fshop.cart.service.CartsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -35,6 +36,8 @@ import java.util.List;
 @RestController
 @RequestMapping("orderGoods")
 @RequiredArgsConstructor
+@RefreshScope
+
 public class OrderGoodsController {
     /**
      * 服务对象
@@ -50,7 +53,13 @@ public class OrderGoodsController {
     private final DiscoveryClient discoveryClient;
 
     private String userId;
-
+    //读取spring.cloud.nacos.discovery.ip的值
+    @Value("${spring.cloud.nacos.discovery.ip}")
+    private String nacosIp;
+    @GetMapping("/test")
+    public void test(){
+        System.out.println(nacosIp);
+    }
 
     /**
      * 增加商品信息到对应的购物车中

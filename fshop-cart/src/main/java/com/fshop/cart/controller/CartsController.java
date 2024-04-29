@@ -5,8 +5,10 @@ import com.fshop.cart.entity.Carts;
 import com.fshop.common.R;
 import com.fshop.common.utils.HeadUtils;
 import com.fshop.cart.service.CartsService;
+import com.fshop.common.utils.UserContext;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +23,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("carts")
+@RefreshScope
 public class CartsController {
     /**
      * 服务对象
@@ -28,7 +31,8 @@ public class CartsController {
     @Autowired
     private CartsService cartsService;
 
-    private String userId;
+    private String userId ;
+    private final String user = UserContext.getUser();
 
     /**
      * 查询某个用户的购物车信息
@@ -36,14 +40,15 @@ public class CartsController {
      */
     @GetMapping("/app/findAllByUserId")
     public R<List<Carts>> app_findAllByUserId(HttpServletRequest request) {
-        userId = HeadUtils.getHeadUserId(request);
-        if(userId==null||userId.equals("")){
-            return R.error("未登录");
-        }
+
+        //获取线程中用户id
+        String user = UserContext.getUser();
         LambdaQueryWrapper<Carts> queryWrapper = new LambdaQueryWrapper<>();
         //根据用户id进行查询
-        queryWrapper.eq(Carts::getUserId, userId);
+        queryWrapper.eq(Carts::getUserId, user);
         List<Carts> list = cartsService.list(queryWrapper);
+        //清楚线程数据
+        UserContext.removeUser();
         return R.success(list);
     }
 
@@ -60,22 +65,25 @@ public class CartsController {
     @PostMapping("app/addCarts")
     public R<String> app_addCarts(@RequestBody Carts carts, HttpServletRequest request) {
         userId = HeadUtils.getHeadUserId(request);
+
         carts.setCheckFlag(carts.isCheckFlag());
         //判断是否有商品编号相同的商品在购物车中
         LambdaQueryWrapper<Carts> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(Carts::getClothId, carts.getClothId());
         //查询所有商品编号相同的商品
         List<Carts> list = cartsService.list(queryWrapper);
-        //遍历集合,找到与carts颜色和尺码都相同的商品
+        //遍历集合,找到与该用户对应的carts颜色和尺码都相同的商品
         for (Carts cart : list) {
             //判断颜色和尺码是否相同
-            if (cart.getColor().equals(carts.getColor()) && cart.getSize().equals(carts.getSize())) {
-                LambdaQueryWrapper<Carts> updQueryWrapper = new LambdaQueryWrapper<>();
-                updQueryWrapper.eq(Carts::getColor,cart.getColor());
-                updQueryWrapper.eq(Carts::getSize,cart.getSize());
-                //更新数据库
-                cartsService.update(carts,updQueryWrapper);
-                return R.success("添加成功");
+            if (cart.getUserId().equals(userId)) { //属于该用户的购物车信息
+               if(cart.getColor().equals(carts.getColor()) && cart.getSize().equals(carts.getSize())){
+                   LambdaQueryWrapper<Carts> updQueryWrapper = new LambdaQueryWrapper<>();
+                   updQueryWrapper.eq(Carts::getColor,cart.getColor());
+                   updQueryWrapper.eq(Carts::getSize,cart.getSize());
+                   //更新数据库
+                   cartsService.update(carts,updQueryWrapper);
+                   return R.success("添加成功");
+               }
             }
         }
         carts.setUserId(userId);

@@ -1,0 +1,3 @@
+com.fshop.common.config.MybatisPlusConfig
+com.fshop.common.config.JacksonConfig
+com.fshop.common.config.MvcConfig

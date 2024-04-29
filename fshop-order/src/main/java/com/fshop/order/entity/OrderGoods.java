@@ -2,7 +2,8 @@ package com.fshop.order.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.fshop.cart.entity.Carts;
+//import com.fshop.cart.entity.Carts;
+import com.fshop.api.entity.Carts;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

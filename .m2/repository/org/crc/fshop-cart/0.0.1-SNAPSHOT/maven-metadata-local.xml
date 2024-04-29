@@ -3,7 +3,7 @@
   <groupId>org.crc</groupId>
   <artifactId>fshop-cart</artifactId>
   <versioning>
-    <lastUpdated>20240417062848</lastUpdated>
+    <lastUpdated>20240429005506</lastUpdated>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
@@ -11,12 +11,12 @@
       <snapshotVersion>
         <extension>jar</extension>
         <value>0.0.1-SNAPSHOT</value>
-        <updated>20240417062848</updated>
+        <updated>20240429005506</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>pom</extension>
         <value>0.0.1-SNAPSHOT</value>
-        <updated>20240417062848</updated>
+        <updated>20240429005506</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>

@@ -1,14 +1,18 @@
 package com.fshop.cart;
 
+
+
+import com.fshop.api.config.DefaultFeignConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
-
+@EnableFeignClients(basePackages = {"com.fshop.api.client"},defaultConfiguration = DefaultFeignConfig.class)
 @EnableTransactionManagement
 @SpringBootApplication
 @ServletComponentScan

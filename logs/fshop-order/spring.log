@@ -1,0 +1,103 @@
+08:35:53:186  INFO 15708 --- [main] com.fshop.order.fshopOrderApplication    : The following 1 profile is active: "dev"
+08:35:55:741 DEBUG 15708 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [D:\JAVA\fshop\fshop-order\target\classes\com\fshop\order\mapper\OrderFmsMapper.class]
+08:35:55:742 DEBUG 15708 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [D:\JAVA\fshop\fshop-order\target\classes\com\fshop\order\mapper\OrderGoodsMapper.class]
+08:35:55:742 DEBUG 15708 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [D:\JAVA\fshop\fshop-order\target\classes\com\fshop\order\mapper\OrderMapper.class]
+08:35:55:757 DEBUG 15708 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'orderFmsMapper' and 'com.fshop.order.mapper.OrderFmsMapper' mapperInterface
+08:35:55:762 DEBUG 15708 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'orderGoodsMapper' and 'com.fshop.order.mapper.OrderGoodsMapper' mapperInterface
+08:35:55:763 DEBUG 15708 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'orderMapper' and 'com.fshop.order.mapper.OrderMapper' mapperInterface
+08:35:56:779  INFO 15708 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6bac724d-9a07-3197-b97c-a5bc3b94cd9d
+08:35:57:519  INFO 15708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5603 (http)
+08:35:57:520  INFO 15708 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.36] using APR version [1.7.2].
+08:35:57:521  INFO 15708 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+08:35:57:521  INFO 15708 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+08:35:57:527  INFO 15708 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1t  7 Feb 2023]
+08:35:57:551  INFO 15708 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+08:35:57:551  INFO 15708 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.69]
+08:35:57:979  INFO 15708 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+08:35:57:980  INFO 15708 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4732 ms
+08:36:02:139  WARN 15708 --- [main] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.fshop.order.entity.OrderGoods".
+08:36:02:140  WARN 15708 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class com.fshop.order.entity.OrderGoods ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+08:36:02:243  WARN 15708 --- [main] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.fshop.order.entity.OrderFms".
+08:36:02:243  WARN 15708 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class com.fshop.order.entity.OrderFms ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+08:36:02:492  INFO 15708 --- [main] com.fshop.common.config.WebMvcConfig     : 扩展消息转换器...
+08:36:02:507  INFO 15708 --- [main] com.fshop.common.config.WebMvcConfig     : 开始进行静态资源映射...
+08:36:06:777  INFO 15708 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+08:36:07:114  WARN 15708 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+08:36:07:395  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c
+08:36:07:396  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] RpcClient init label, labels = {module=naming, source=sdk}
+08:36:07:401  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+08:36:07:401  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+08:36:07:403  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+08:36:07:404  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Try to connect to server on start up, server: {serverIp = '192.168.138.81', server main port = 8848}
+08:36:07:527  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Success to connect to server [192.168.138.81:8848] on start up, connectionId = 1714350964820_192.168.138.1_51992
+08:36:07:527  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+08:36:07:527  INFO 15708 --- [com.alibaba.nacos.client.remote.worker] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Notify connected event to listeners.
+08:36:07:527  INFO 15708 --- [main] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda$334/1875304119
+08:36:07:687  INFO 15708 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5603 (http) with context path ''
+08:36:07:705  INFO 15708 --- [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP fshop-order 192.168.1.28:5603 register finished
+08:36:08:216  INFO 15708 --- [nacos-grpc-client-executor-5] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Receive server push request, request = NotifySubscriberRequest, requestId = 5
+08:36:08:234  INFO 15708 --- [nacos-grpc-client-executor-5] com.alibaba.nacos.common.remote.client   : [a2ffd9f8-c691-47db-8b7d-58ed1ec90a5c] Ack server push request, request = NotifySubscriberRequest, requestId = 5
+08:36:10:338  INFO 15708 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+08:36:10:580  INFO 15708 --- [main] o.s.c.openfeign.FeignClientFactoryBean   : For 'fshop-cart' URL not provided. Will try picking an instance via load-balancing.
+08:36:10:696  INFO 15708 --- [main] com.fshop.order.fshopOrderApplication    : Started fshopOrderApplication in 35.364 seconds (JVM running for 39.787)
+08:36:10:807  INFO 15708 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=fshop-order, group=DEFAULT_GROUP
+08:36:10:809  INFO 15708 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=fshop-order.yml, group=DEFAULT_GROUP
+08:36:10:837  INFO 15708 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=fshop-order-dev.yml, group=DEFAULT_GROUP
+08:36:10:837  INFO 15708 --- [main] com.fshop.order.fshopOrderApplication    : fshop-订单:Application is running...
+08:47:20:692  WARN 15708 --- [Thread-9] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+08:47:20:692  WARN 15708 --- [Thread-22] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+08:47:20:700  WARN 15708 --- [Thread-22] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+08:47:20:703  WARN 15708 --- [Thread-9] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+08:47:21:763  INFO 15708 --- [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+08:47:21:772  INFO 15708 --- [SpringApplicationShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+08:47:22:103  INFO 15708 --- [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+08:47:22:103  INFO 15708 --- [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@14cf5562[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+08:47:22:104  INFO 15708 --- [SpringApplicationShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1714350964820_192.168.138.1_51992
+08:47:22:107  INFO 15708 --- [SpringApplicationShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@38b127cc[Running, pool size = 5, active threads = 1, queued tasks = 0, completed tasks = 145]
+08:47:22:270  INFO 15708 --- [nacos-grpc-client-executor-145] c.a.n.c.remote.client.grpc.GrpcClient    : [1714350964820_192.168.138.1_51992]Ignore complete event,isRunning:false,isAbandon=false
+08:47:59:890  INFO 22300 --- [main] com.fshop.order.fshopOrderApplication    : The following 1 profile is active: "dev"
+08:48:01:218 DEBUG 22300 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [D:\JAVA\fshop\fshop-order\target\classes\com\fshop\order\mapper\OrderFmsMapper.class]
+08:48:01:219 DEBUG 22300 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [D:\JAVA\fshop\fshop-order\target\classes\com\fshop\order\mapper\OrderGoodsMapper.class]
+08:48:01:219 DEBUG 22300 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Identified candidate component class: file [D:\JAVA\fshop\fshop-order\target\classes\com\fshop\order\mapper\OrderMapper.class]
+08:48:01:220 DEBUG 22300 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'orderFmsMapper' and 'com.fshop.order.mapper.OrderFmsMapper' mapperInterface
+08:48:01:225 DEBUG 22300 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'orderGoodsMapper' and 'com.fshop.order.mapper.OrderGoodsMapper' mapperInterface
+08:48:01:227 DEBUG 22300 --- [main] o.m.s.mapper.ClassPathMapperScanner      : Creating MapperFactoryBean with name 'orderMapper' and 'com.fshop.order.mapper.OrderMapper' mapperInterface
+08:48:01:351  INFO 22300 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=6bac724d-9a07-3197-b97c-a5bc3b94cd9d
+08:48:01:873  INFO 22300 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 5603 (http)
+08:48:01:874  INFO 22300 --- [main] o.a.catalina.core.AprLifecycleListener   : Loaded Apache Tomcat Native library [1.2.36] using APR version [1.7.2].
+08:48:01:874  INFO 22300 --- [main] o.a.catalina.core.AprLifecycleListener   : APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+08:48:01:874  INFO 22300 --- [main] o.a.catalina.core.AprLifecycleListener   : APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+08:48:01:878  INFO 22300 --- [main] o.a.catalina.core.AprLifecycleListener   : OpenSSL successfully initialized [OpenSSL 1.1.1t  7 Feb 2023]
+08:48:01:893  INFO 22300 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+08:48:01:893  INFO 22300 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.69]
+08:48:02:185  INFO 22300 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+08:48:02:186  INFO 22300 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2263 ms
+08:48:05:127  WARN 22300 --- [main] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.fshop.order.entity.OrderGoods".
+08:48:05:128  WARN 22300 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class com.fshop.order.entity.OrderGoods ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+08:48:05:169  WARN 22300 --- [main] c.b.m.core.metadata.TableInfoHelper      : Can not find table primary key in Class: "com.fshop.order.entity.OrderFms".
+08:48:05:169  WARN 22300 --- [main] c.b.m.core.injector.DefaultSqlInjector   : class com.fshop.order.entity.OrderFms ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+08:48:05:328  INFO 22300 --- [main] com.fshop.common.config.WebMvcConfig     : 扩展消息转换器...
+08:48:05:336  INFO 22300 --- [main] com.fshop.common.config.WebMvcConfig     : 开始进行静态资源映射...
+08:48:07:831  INFO 22300 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+08:48:07:998  WARN 22300 --- [main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+08:48:08:135  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of af8e83db-2c0e-4bee-aa86-ecddcf60b72e
+08:48:08:135  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] RpcClient init label, labels = {module=naming, source=sdk}
+08:48:08:138  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+08:48:08:138  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+08:48:08:139  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+08:48:08:140  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Try to connect to server on start up, server: {serverIp = '192.168.138.81', server main port = 8848}
+08:48:08:254  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Success to connect to server [192.168.138.81:8848] on start up, connectionId = 1714351688144_192.168.138.1_49670
+08:48:08:254  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+08:48:08:254  INFO 22300 --- [com.alibaba.nacos.client.remote.worker] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Notify connected event to listeners.
+08:48:08:255  INFO 22300 --- [main] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda$334/883862737
+08:48:08:335  INFO 22300 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 5603 (http) with context path ''
+08:48:08:346  INFO 22300 --- [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, DEFAULT_GROUP fshop-order 10.225.196.74:5603 register finished
+08:48:08:857  INFO 22300 --- [nacos-grpc-client-executor-6] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Receive server push request, request = NotifySubscriberRequest, requestId = 15
+08:48:08:869  INFO 22300 --- [nacos-grpc-client-executor-6] com.alibaba.nacos.common.remote.client   : [af8e83db-2c0e-4bee-aa86-ecddcf60b72e] Ack server push request, request = NotifySubscriberRequest, requestId = 15
+08:48:10:340  INFO 22300 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+08:48:10:425  INFO 22300 --- [main] o.s.c.openfeign.FeignClientFactoryBean   : For 'fshop-cart' URL not provided. Will try picking an instance via load-balancing.
+08:48:10:455  INFO 22300 --- [main] com.fshop.order.fshopOrderApplication    : Started fshopOrderApplication in 22.081 seconds (JVM running for 24.827)
+08:48:10:465  INFO 22300 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=fshop-order, group=DEFAULT_GROUP
+08:48:10:466  INFO 22300 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=fshop-order.yml, group=DEFAULT_GROUP
+08:48:10:469  INFO 22300 --- [main] c.a.c.n.refresh.NacosContextRefresher    : [Nacos Config] Listening config: dataId=fshop-order-dev.yml, group=DEFAULT_GROUP
+08:48:10:469  INFO 22300 --- [main] com.fshop.order.fshopOrderApplication    : fshop-订单:Application is running...

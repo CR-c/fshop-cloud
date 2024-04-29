@@ -13,9 +13,11 @@
 
         <module>item-service</module>
         <module>fshop-common</module>
-        <module>fshop-app</module>
         <module>fshop-cart</module>
         <module>fshop-order</module>
+        <module>fshop-admin</module>
+        <module>fshop-api</module>
+        <module>fshop-gateway</module>
     </modules>
     <description>fshop</description>
     <properties>
@@ -43,15 +45,27 @@
 
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!--nacos 服务注册发现-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <!--nacos 服务配置-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+<!--        使用bootstrap作为启动配置-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -74,7 +88,11 @@
             <artifactId>hutool-core</artifactId>
             <version>${hutool-core.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.23</version> <!-- 请根据需要使用正确的版本号 -->
+        </dependency>
     </dependencies>
 <!--    依赖包管理-->
     <dependencyManagement>
